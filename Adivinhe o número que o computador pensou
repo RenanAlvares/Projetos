@@ -1,0 +1,19 @@
+import random
+
+def adivinhar(x):
+   
+    NumPC = random.randint(1,x)
+    adivinhar = 0
+    print(f'Vamos brincar de adivinhar? Pensei em um número de 1 a {x}, será que você consegue adivinhar?')
+    while adivinhar != NumPC:
+        adivinhar = int(input('Digite um número: '))
+        if adivinhar < NumPC:
+            print('Muito baixo, digite um número maior.')
+        elif adivinhar > NumPC:
+            print('Muito alto, digite um número menor.')
+    print('Parabéns, você adivinhou o meu número')
+
+'''Coloque abaixo o limite de números para o computador pensar.
+Escreva da seguinte maneira: "adivinhar(x)", troque x pelo número de sua preferência!
+Ou se achar mais fácil, apenas mude o número 10 para qualquer outro. '''
+adivinhar(10) 
