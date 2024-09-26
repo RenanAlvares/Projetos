@@ -1,0 +1,91 @@
+
+def computador_escolhe_jogada(tirar_pecas,total):
+    if tirar_pecas >= total:
+        volta = total
+        if volta == 1:
+            print(f'O computador tirou uma peça.')
+        else:
+            print(f'O computador tirou {volta} peças.')
+    
+        return volta
+    
+    volta = total % (tirar_pecas+1)
+    if (total - volta) % (tirar_pecas+1) == 0:
+        if volta == 1:
+            print(f'O computador tirou uma peça.')
+        else:
+            print(f'O computador tirou {volta} peças.')
+        print(f'Agora restam {total-volta} peças no tabuleiro.')
+        return volta
+    else:
+        volta = tirar_pecas
+        print(f'O computador tirou {volta} peças.')
+        print(f'Agora restam {total-volta} peças no tabuleiro.')
+        return volta
+    
+    
+
+def usuario_escolhe_jogada(n,m):
+    while True:
+        jogada = int(input('Quantas peças você vai tirar? '))
+        if jogada > 0 and jogada <= m:
+            if jogada == 1:
+                print(f'Você tirou uma peça.')
+            else:
+                print(f'Você tirou {jogada} peças.')
+            if (n - jogada) == 1:
+                print(f'Agora resta uma peça no tabuleiro.')
+            else:
+                print(f'Agora restam {m-jogada} peças no tabuleiro.')
+            break
+        else:
+            print('Oops! Jogada inválida! Tente de novo.')
+    return jogada
+
+
+def partida():
+    jogada_user = 0
+    jogada_pc = 0
+    
+    n = int(input('Quantas peças? '))
+    m = int(input('Limite de peças por jogada? '))
+    if n % (m+1) == 0:
+        vez = 0
+        jogador = 'Voce'
+    else:
+        vez = 1
+        jogador = 'Computador'
+    print(f'\n{jogador} começa!')
+    tar = 1
+    while True:
+        print(f'\n**** Rodada {tar} ****\n')
+        if vez % 2 == 0:
+            n -= usuario_escolhe_jogada(n,m)
+        else:
+            n -= computador_escolhe_jogada(m,n)
+        if n == 0:
+            break
+        vez += 1
+        tar += 1
+
+
+
+
+print('Bem-vindo ao jogo do NIM! Escolha:\n')
+print('1 - para jogar uma partida isolada')
+x = int(input('2 - para jogar um campeonato '))
+
+if x == 1:
+    print('\nVoce escolheu uma partida isolada!\n')
+    partida()
+    print('Fim do jogo! O computador ganhou!')
+elif x == 2:    
+    print('\nVoce escolheu um campeonato!\n')
+    for i in range(3):
+        partida()
+        print('Fim do jogo! O computador ganhou!')
+    print('**** Final do campeonato! ****')
+    print('Placar: Você 0 X 3 Computador')
+
+
+
