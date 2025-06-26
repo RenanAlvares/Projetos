@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block conteudo %}
+    <form method="post" action="/adicionar" enctype="multipart/form-data">
+
+        <fieldset>
+
+            {{ form.csrf_token() }}
+
+            <div class="mb-2">
+                <label for="arquivo" class="form-label">Selecione a imagem de capa da música</label>
+                <input type="file" id='arquivo' class="form-control" 
+                name="arquivo" accept=".jpg, .jpeg, .png">
+            </div>
+
+            <legend>Digite as informações da música</legend>
+
+            <div class="mb-2">
+                {{ form.nome.label(class='form-label') }}
+                {{ form.nome(class='form-control') }}
+            </div>
+            
+            <div class="mb-2">
+                {{ form.grupo.label(class='form-label') }}
+                {{ form.grupo(class='form-control') }}
+            </div>
+            
+            <div class="mb-2">
+                {{ form.genero.label(class='form-label') }}
+                {{ form.genero(class='form-control') }}
+            </div>
+
+            <div>
+                {{ form.cadastrar(class='btn btn-primary') }}
+            </div>
+
+        </fieldset>
+    </form>
+{% endblock %}
